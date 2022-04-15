@@ -1,6 +1,6 @@
 # Bonus LAB | Canvas Flappy Bird
 
-Play my version of the game [here]}(https://joaomiguelinacio.github.io/lab-canvas-flappybirds/)
+Play my version of the game [here]}(https://joaomiguelinacio.github.io/lab-canvas-flappybirds)
 
 # Introduction
 
@@ -51,7 +51,7 @@ I opted for a slightly different approach than the one suggested as you can see 
 
 ## Obstacles :stop_sign:
 
-I opted to creat 2 different classes, one for the top obstacle and other for the bottom obstacle.
+I opted to creat 2 different classes, one for the top and other for the bottom obstacle.
 
 Coming up with a way to position the bottom obstacle in relation to the top was a nice exercise.
 
@@ -76,7 +76,7 @@ On the following snippet of the updateCanvas function, you will be able to see h
       window.alert("LEVEL UP");
 ```
 
-As levels go up, the distance between the obstacles is reduced and the speed they move towards the player increased.
+As levels go up, the distance between the obstacles is reduced and the speed they move towards the player is increased.
 
 On Level 2 the obstacleSpeed is 1.25 and distance between obstacles is reduced to 80px.
 On Level 3 the obstacleSpeed is 1.5 and distance between obstacles is reduced to 60px.
@@ -115,3 +115,4 @@ Because I need to convince my grandmother that I am not always playing games whe
 * Center Canvas in screen 2;
 * Create a screen 3 for when the game is lost;
 * Create a re-start button for screen 3;
+* Code refactoring;
