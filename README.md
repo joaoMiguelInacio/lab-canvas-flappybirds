@@ -1,94 +1,117 @@
-![logo_ironhack_blue 7](https://user-images.githubusercontent.com/23629340/40541063-a07a0a8a-601a-11e8-91b5-2f13e4e6b441.png)
+# Bonus LAB | Canvas Flappy Bird
 
-# LAB | Canvas Flappy Bird
+Play my version of the game [here]}()
 
-## Introduction
+# Introduction
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_6706fdbfdce80220b94fc6c04e2c990d.jpg)
+I must start by saying that I have always hated this game because I have never been able to play it for more than 30 seconds without losing.
 
-The famous FlappyBird is a game developed by Vietnamese video game artist and programmer Dong Nguyen, under his game development company [dotGEARS](https://en.wikipedia.org/wiki/DotGEARS).
+However, without classes, it has been a very long week and as such, I decided to take on the Bonus Lab: Canvas Flappy Bird.
 
-The objective is to direct a flying bird, named "Faby", who moves continuously to the right, between sets of pipes. If the player touches the pipes, they lose. Faby briefly flaps each time upward that the player clicks on the spacebar; if the screen is not tapped, Faby falls because of gravity.
+You can find the origal IronHack repository [here](https://github.com/ironhack-labs/lab-canvas-flappybirds).
 
-If you want to understand better the game, go ahead and play a bit [here](http://flappybird.io/)
+# Approach
 
-## Requirements
+## Background :cityscape:
 
-- Fork this repo
-- Clone this repo
+As suggested I started by creating the Background class.
 
-## Submission
+I wish I hadn't because the biggest challenge in making the game was getting the image to loop infinitly.
 
-- Upon completion, run the following commands:
+I guess that makes it the biggest learning achievement as well :mechanical_arm:
 
-  ```
-  git add .
-  git commit -m "done"
-  git push origin master
-  ```
+## Player :baby_chick:	
 
-- Create Pull Request so your TAs can check up your work.
+When attempting to play the game before, I have called this bird many names never knowing he was called Faby. :sweat_smile:
 
-## Instructions
+Anyhow, it was easy to get Faby to be drawn and to move up but not as easy to define the gravity and how it would affect.
 
-### Iteration 1: Create the board
+I opted for a slightly different approach than the one suggested as you can see in the following snippet:
 
-The canvas tag is already part of the HTML starter code provided in the `index.html` file. Your first assignment is to add the `background`. In the `images` folder, you will find the file you should use for it.
+```
+    //as defined in the player.js file
 
-:wink: Check the previous lesson to remember how to make an infinite loop with an image!
+    gravityIncreases(){
+        for (let gravity = 0.2; gravity <= 0.25; gravity += 0.01){
+            this.y += gravity;
+          }
+    }
 
-### Iteration 2: Create the Player
+    //as defined in the index.js file
 
-![](https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_5279ab3427a72a2fbf77cbc9e2b32664.png)
+    player.gravityIncreases();
+    document.onkeydown =  (e) => {
+      if (e.key === " ") {
+          e.preventDefault();
+          player.y -=20;
+          gravity = 0.2;
+      }
+    };
+```
 
-We have the `canvas` with our beautiful background. Now we need to add ´Faby´.
+## Obstacles :stop_sign:
 
-Remember he should have the following properties:
+I opted to creat 2 different classes, one for the top obstacle and other for the bottom obstacle.
 
-- `width`
-- `height`
-- `speedX`
-- `speedY`
-- `gravity`
-- `gravitySpeed`
+Coming up with a way to position the bottom obstacle in relation to the top was a nice exercise.
 
-And the functions `update` and `newPos` to keep updating its position in every update.
+And from there it was easy to come up with ways to personalise the game with different levels.
 
-We should also check the user iteration when he clicks the **spacebar**. Every time the **spacebar** is clicked, the `gravity` of 'Faby' should change to negative, and after the user removes the clicking finger, set the `gravity` to positive again.
+On the following snippet of the updateCanvas function, you will be able to see how I position the first pair of obstacles and all the following on Level 1.
 
-### Iteration 3: Create obstacles
+```
+	function updateCanvas() {
+    
+    frameCounter ++;
+    if (frameCounter === 150){
+      obstaclesArray.push(new ObstacleTop(canvas, ctx, 1, -100));
+      obstaclesArray.push(new ObstacleBottom(canvas, ctx, 1, 150));
+    }
+    if (frameCounter > 150 && frameCounter % 150 === 0 && frameCounter < 2000){
+      obstaclesArray.push(new ObstacleTop(canvas, ctx, 1, Math.floor(Math.random() * -140)));
+      obstaclesArray.push(new ObstacleBottom(canvas, ctx, 1, obstaclesArray[obstaclesArray.length - 1].y + 250 ));
+    }
+    if (frameCounter === 2000){
+      obstaclesArray = [];
+      window.alert("LEVEL UP");
+```
 
-<img src="https://s3-eu-west-1.amazonaws.com/ih-materials/uploads/upload_032b5d79ab1c7412e747473b679f0b59.png" alt="" style="width:450px; float:right; margin-left: 50px"/>
+As levels go up, the distance between the obstacles is reduced and the speed they move towards the player increased.
 
-You need to add some obstacles to make this fun. If you notice every time we create obstacles, we should create two of them and position one at the top, and the other at the bottom, and of course, make a gap between them where 'Faby' could pass.
+On Level 2 the obstacleSpeed is 1.25 and distance between obstacles is reduced to 80px.
+On Level 3 the obstacleSpeed is 1.5 and distance between obstacles is reduced to 60px.
 
-It might be a good idea to create an array to store all our obstacles. This will help us later to move them, and check if 'Faby' crash with one of them.
+## GameOver :collision:
 
-For now, just push them into the array.
+Now that we covered how the game is won, please have a at the following snippet to see how the game can be lost.
 
-### Iteration 4: Update the canvas
+```
+    if (player.y + player.height > canvas.height){
+      window.alert("You have been eaten by a snake. Please refresh the page to play again");
+    }
 
-This is the most important function in our project. The `update` function should do the following:
+    if (player.y < -player.height){
+      window.alert("Your bird flew away. Please refresh the page to play again");
+    }
 
-- Clear the `canvas`
-- Update obstacles position
-- Update our player position
-- Create new obstacles
+    obstaclesArray.forEach((obstacle) => {
+      obstacle.draw();
+      obstacle.move();
+      const withinX = player.x + player.width > obstacle.x && player.x < obstacle.x + obstacle.width;
+      const withinY = obstacle.y + obstacle.height > player.y && obstacle.y < player.y + player.height;
+      collidedWithObstacle = withinX && withinY;
+      if (collidedWithObstacle){
+        window.alert("You crashed. Please refresh the page to play again");
+      }
+    })
+```
 
-:bulb: For creating **new obstacles**, we recommend doing it every certain amount of updates. You should consider adding a counter to see how many times we update our `canvas`.
+## Backlog :older_woman:
 
-### Iteration 5: Check the collision
+Because I need to convince my grandmother that I am not always playing games when I am at the computer, I will not be doing the following at this time:
 
-When 'Faby' crashes into one of the obstacles or goes out of the `canvas` the game should stop.
-
-In this iteration, your goal is to create this functionality. For that purpose, you can use the array of obstacles we had to create, iterating over it and checking their position comparing to the position of the bird.
-
-### BONUS: Add points
-
-If we want to challenge somebody, we need to know who makes more points. Go ahead and add it to the game.
-
-:bulb: You can use the counter we add to the update function!
-
-<br>
-
-**Happy coding!** :heart:
+* Add an anoying 8-bit song;
+* Center logo and start button in screen 1;
+* Center Canvas in screen 2;
+* Create a screen 3 for when the game is lost;
+* Create a re-start button for screen 3;
