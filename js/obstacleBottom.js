@@ -13,7 +13,7 @@ class ObstacleBottom {
 
     init(){
         this.image = new Image();
-        this.image.src = "./images/obstacle_bottom.png";
+        this.image.src = "images/obstacle_bottom.png";
     }
 
     draw(){

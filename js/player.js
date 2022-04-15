@@ -12,7 +12,7 @@ class Player {
 
     init(){
         this.image = new Image();
-        this.image.src = "./images/flappy.png";
+        this.image.src = "images/flappy.png";
     }
 
     draw(){

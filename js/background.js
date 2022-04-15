@@ -11,7 +11,7 @@ class Background {
 
 	init() {
 		this.image = new Image();
-		this.image.src = "./images/bg.png";
+		this.image.src = "images/bg.png";
 	}
 
 	draw () {
