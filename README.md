@@ -1,6 +1,6 @@
 # Bonus LAB | Canvas Flappy Bird
 
-Play my version of the game [here]}(https://joaomiguelinacio.github.io/lab-canvas-flappybirds)
+Play my version of the game [here](https://joaomiguelinacio.github.io/lab-canvas-flappybirds)
 
 # Introduction
 
