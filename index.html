@@ -8,13 +8,18 @@
     <title>LAB | Flappy Birds</title>
   </head>
   <body>
+    <div id = "screen1" class="">
     <img src="./images/logo.png" alt="" style="width:50%;" />
     <br />
     <button id="start-button">StartGame</button>
-    <div id="game-board">
-      <canvas id="my-canvas"></canvas>
     </div>
-
-    <script type="text/javascript" src="js/script.js"></script>
+    <div id="screen2" class="hidden">
+      <canvas id="my-canvas"  width = "600px" height = "300px"></canvas>
+    </div>
+    <script type="text/javascript" src="js/player.js"></script>
+    <script type="text/javascript" src="js/obstacleBottom.js"></script>
+    <script type="text/javascript" src="js/obstacleTop.js"></script>
+    <script type="text/javascript" src="js/background.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
