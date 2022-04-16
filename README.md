@@ -73,7 +73,15 @@ On the following snippet of the updateCanvas function, you will be able to see h
     }
     if (frameCounter === 2000){
       obstaclesArray = [];
-      window.alert("LEVEL UP");
+      currentLevel = 2;
+      currentLevelCompletion = 0;
+    ...
+    if (frameCounter === 6000){
+      endGameText.innerHTML = ("You won. Please refresh the page to play again");
+      screen2.classList.add("hidden");
+      screen3.classList.remove("hidden");
+    }
+    
 ```
 
 As levels go up, the distance between the obstacles is reduced and the speed they move towards the player is increased.
@@ -101,18 +109,36 @@ Now that we covered how the game is won, please have a at the following snippet 
       const withinY = obstacle.y + obstacle.height > player.y && obstacle.y < player.y + player.height;
       collidedWithObstacle = withinX && withinY;
       if (collidedWithObstacle){
-        window.alert("You crashed. Please refresh the page to play again");
+        screen2.classList.add("hidden");
+        screen3.classList.remove("hidden");
       }
     })
 ```
 
 ## Backlog :older_woman:
 
-Because I need to convince my grandmother that I am not always playing games when I am at the computer, I will not be doing the following at this time:
+Because I need to convince my grandmother that I am not always playing games when I am at the computer, I be adding the following features at a later date:
 
-* Add an anoying 8-bit song;
-* Center logo and start button in screen 1;
-* Center Canvas in screen 2;
-* Create a screen 3 for when the game is lost;
-* Create a re-start button for screen 3;
-* Code refactoring;
+* Added instructions to screen 1 [done, Fifth Commit]
+* Center all Elements in screen 1 [done, Fifth Commit]
+* Center Canvas in screen 2 [done, Fifth Commit]
+* Create a screen 3 for when the game finishes [done, Fifth Commit]
+* Center End Game Text in screen 3 [done, Fifth Commit]
+* Show Current Level on Canvas [done, Fifth Commit]
+* Show Current Level Completion on Canvas [done, Fifth Commit]
+
+```
+    ctx.fillText(`LEVEL ${currentLevel}`, 500, 20);
+    ctx.fillText(`${currentLevelCompletion} %`, 500, 40);
+
+    frameCounter ++;
+    if (frameCounter % 20 === 0){
+      currentLevelCompletion += 1;
+    }
+
+```
+
+* Make Mobile Ready [ ]
+* Add an anoying 8-bit song [ ]
+* Create a re-start button for screen 3 [ ]
+* Code refactoring [ ]

@@ -21,3 +21,12 @@ body button {
 .hidden{
   display: none;
 }
+
+#screen1,
+#screen2,
+#screen3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
