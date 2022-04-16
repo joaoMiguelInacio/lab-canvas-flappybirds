@@ -119,7 +119,7 @@ Now that we covered how the game is won, please have a at the following snippet 
 
 Because I need to convince my grandmother that I am not always playing games when I am at the computer, I'll be adding the following features at a later date:
 
-- [x]Added instructions to screen 1 (Fifth Commit)
+- [x] Added instructions to screen 1 (Fifth Commit)
 - [x] Center all Elements in screen 1 (Fifth Commit)
 - [x] Center Canvas in screen 2 (Fifth Commit)
 - [x] Create a screen 3 for when the game finishes (Fifth Commit)
