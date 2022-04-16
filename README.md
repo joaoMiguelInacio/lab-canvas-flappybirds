@@ -117,15 +117,15 @@ Now that we covered how the game is won, please have a at the following snippet 
 
 ## Backlog :older_woman:
 
-Because I need to convince my grandmother that I am not always playing games when I am at the computer, I be adding the following features at a later date:
+Because I need to convince my grandmother that I am not always playing games when I am at the computer, I'll be adding the following features at a later date:
 
-* Added instructions to screen 1 [done, Fifth Commit]
-* Center all Elements in screen 1 [done, Fifth Commit]
-* Center Canvas in screen 2 [done, Fifth Commit]
-* Create a screen 3 for when the game finishes [done, Fifth Commit]
-* Center End Game Text in screen 3 [done, Fifth Commit]
-* Show Current Level on Canvas [done, Fifth Commit]
-* Show Current Level Completion on Canvas [done, Fifth Commit]
+- [x]Added instructions to screen 1 (Fifth Commit)
+- [x] Center all Elements in screen 1 (Fifth Commit)
+- [x] Center Canvas in screen 2 (Fifth Commit)
+- [x] Create a screen 3 for when the game finishes (Fifth Commit)
+- [x] Center End Game Text in screen 3 (Fifth Commit)
+- [x] Show Current Level on Canvas (Fifth Commit)
+- [x] Show Current Level Completion on Canvas (Fifth Commit)
 
 ```
     ctx.fillText(`LEVEL ${currentLevel}`, 500, 20);
@@ -138,7 +138,12 @@ Because I need to convince my grandmother that I am not always playing games whe
 
 ```
 
-* Make Mobile Ready [ ]
-* Add an anoying 8-bit song [ ]
-* Create a re-start button for screen 3 [ ]
-* Code refactoring [ ]
+- [x] Make Mobile Ready (Sixth Commit)
+
+```
+    canvas.addEventListener('touchstart', fly);
+```
+
+- [] Add an anoying 8-bit song
+- [] Create a re-start button for screen 3
+- [] Code refactoring

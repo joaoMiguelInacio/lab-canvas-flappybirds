@@ -6,6 +6,7 @@ window.onload = function() {
   let screen1 = document.getElementById("screen1"),
       screen2 = document.getElementById("screen2"),
       screen3 = document.getElementById("screen3"),
+      instructions = document.getElementById("instructions"),
       endGameText = document.getElementById("end-game-text"),
       canvas = document.getElementById("my-canvas"),
       ctx = canvas.getContext("2d"),
@@ -21,7 +22,14 @@ window.onload = function() {
     player = new Player (canvas, ctx);
     obstacleTop = new ObstacleTop (canvas, ctx, 1);
     obstacleBottom = new ObstacleBottom (canvas, ctx, 1, 300);
+    canvas.addEventListener('touchstart', fly);
+    canvas.addEventListener("click", fly);
     updateCanvas();
+  }
+
+  function fly () {
+    player.y -=20;
+    gravity = 0.2;
   }
 
 
@@ -35,8 +43,7 @@ window.onload = function() {
     document.onkeydown =  (e) => {
       if (e.key === " ") {
           e.preventDefault();
-          player.y -=20;
-          gravity = 0.2;
+          fly();
       }
     };
 
